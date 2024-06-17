@@ -6,6 +6,7 @@ namespace ECommerce_MongoDb.Controllers
     {
         public IActionResult Index()
         {
+            //.
             return View();
         }
     }
