@@ -1,0 +1,29 @@
+﻿@model GetByIdCategoryDto
+@{
+    ViewData["Title"] = "UpdateCategory";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="col-md-12">
+    <div class="white_shd full margin_bottom_30">
+        <div class="full graph_head">
+            <div class="heading1 margin_0">
+                <h2>Kategori Güncelle</h2>
+            </div>
+        </div>
+        <div class="table_section padding_infor_info">
+            <div class="table-responsive-sm">
+                <form method="post">
+                    <input type="hidden" readonly asp-for="@Model.CategoryId" />
+                    <div class="form-group">
+                        <input type="text" class="form-control" asp-for="@Model.CategoryName" />
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn cur-p btn-success"><i class="fa fa-check-circle"></i> Kaydet</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
