@@ -1,0 +1,52 @@
+﻿@model List<ResultCustomerDto>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="col-md-12">
+    <div class="white_shd full margin_bottom_30">
+        <div class="full graph_head">
+            <div class="heading1 margin_0">
+                <h2>Müşteri Listesi</h2>
+            </div>
+        </div>
+        <div class="table_section padding_infor_info">
+            <div class="table-responsive-sm">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Müşteri Adı</th>
+                            <th>Email</th>
+                            <th>Telefon</th>
+                            <th>Adres</th>
+                            <th>Sil</th>
+                            <th>Güncelle</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model.Count <= 0)
+                        {
+                            <div class="alert alert-warning">Listelenecek herhangi bir müşteri bulunamadı.</div>
+                        }
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.CustomerId</td>
+                                <td>@item.CustomerNameSurname</td>
+                                <td>@item.Email</td>
+                                <td>@item.Phone</td>
+                                <td>@item.Address</td>
+                                <td><a href="/Customer/DeleteCustomer/@item.CustomerId" class="btn cur-p btn-danger"><i class="fa fa-trash white_color"></i></a></td>
+                                <td><a href="/Customer/UpdateCustomer/@item.CustomerId" class="btn cur-p btn-warning"><i class="fa fa-edit white_color"></i></a></td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+                <a href="/Customer/CreateCustomer" class="btn cur-p btn-primary"><i class="fa fa-plus-circle blue_color"></i> Yeni Müşteri Oluştur</a>
+            </div>
+        </div>
+    </div>
+</div>

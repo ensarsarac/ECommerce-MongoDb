@@ -1,6 +1,8 @@
 using ECommerce_MongoDb.Models;
 using ECommerce_MongoDb.Services.CategoryService;
+using ECommerce_MongoDb.Services.CustomerService;
 using ECommerce_MongoDb.Services.GCSService;
+using ECommerce_MongoDb.Services.OrderService;
 using ECommerce_MongoDb.Services.ProductService;
 using ECommerce_MongoDb.Settings;
 using Microsoft.Extensions.Options;
@@ -19,6 +21,8 @@ builder.Services.AddScoped<IDatabaseSetting>(x =>
 });
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<ICustomerService, CustomerService>();
+builder.Services.AddScoped<IOrderService, OrderService>();
 
 builder.Services.Configure<GCSConfigOptions>(builder.Configuration);
 builder.Services.AddSingleton<IGCSService, GCSService>();

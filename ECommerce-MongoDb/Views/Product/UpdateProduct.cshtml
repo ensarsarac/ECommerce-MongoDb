@@ -16,6 +16,7 @@
             <div class="table-responsive-sm">
                 <form method="post" enctype="multipart/form-data">
                     <input type="hidden" asp-for="@Model.ProductId" />
+                    <input type="hidden" asp-for="@Model.ImageUrl" />
                     <div class="form-group">
                         <input type="text" class="form-control" asp-for="@Model.Name" placeholder="Ürün Adı" />
                     </div>

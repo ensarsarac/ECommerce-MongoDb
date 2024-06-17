@@ -12,6 +12,7 @@ namespace ECommerce_MongoDb.Services.ProductService
     {
         private readonly IMongoCollection<Product> _productCollection;
         private readonly IMongoCollection<Category> _categoryCollection;
+        private readonly IMongoCollection<Order> _orderCollection;
         private readonly IGCSService _gcsservice;
         private readonly IMapper _mapper;
 
@@ -22,24 +23,37 @@ namespace ECommerce_MongoDb.Services.ProductService
             var database = client.GetDatabase(_databaseSetting.DatabaseName);
             _productCollection = database.GetCollection<Product>(_databaseSetting.ProductCollectionName);
             _categoryCollection = database.GetCollection<Category>(_databaseSetting.CategoryCollectionName);
+            _orderCollection = database.GetCollection<Order>(_databaseSetting.OrderCollectionName);
             _gcsservice = gcsservice;
         }
         public async Task CreateProductAsync(CreateProductDto createProductDto)
         {
             var value = _mapper.Map<Product>(createProductDto);
-            var storageName = Guid.NewGuid().ToString() + "-" + createProductDto.ImageUrl.FileName;
-            value.ImageUrl = await _gcsservice.UploadFileAsync(createProductDto.ImageUrl,storageName);
-            value.StorageName = storageName;
+            if(createProductDto.ImageUrl != null)
+            {
+                var storageName = Guid.NewGuid().ToString() + "-" + createProductDto.ImageUrl.FileName;
+                value.ImageUrl = await _gcsservice.UploadFileAsync(createProductDto.ImageUrl, storageName);
+                value.StorageName = storageName;
+            }
+            
             await _productCollection.InsertOneAsync(value);
         }
 
         public async Task<List<ResultProductDto>> GetAllProductAsync()
         {
+            var order = await _orderCollection.Find(x => true).ToListAsync();
             var values = _mapper.Map<List<ResultProductDto>>(await _productCollection.Find(x => true).ToListAsync());
             foreach (var item in values)
             {
                 var category =await _categoryCollection.Find(x =>x.CategoryId==item.CategoryId).FirstOrDefaultAsync();
                 item.CategoryName = category.CategoryName;
+                foreach (var item2 in order)
+                {
+                    if(item2.ProductId == item.ProductId)
+                    {
+                        item.Stock -= item2.Amount;
+                    }
+                }
             }
             return values;
         }
@@ -57,9 +71,12 @@ namespace ECommerce_MongoDb.Services.ProductService
         public async Task UpdateProductAsync(UpdateProductDto updateProductDto)
         {
             var value = _mapper.Map<Product>(updateProductDto);
-            var storageName = Guid.NewGuid().ToString() + "-" + updateProductDto.ImageFile.FileName;
-            value.ImageUrl = await _gcsservice.UploadFileAsync(updateProductDto.ImageFile, storageName);
-            value.StorageName = storageName;
+            if(updateProductDto.ImageFile != null)
+            {
+                var storageName = Guid.NewGuid().ToString() + "-" + updateProductDto.ImageFile.FileName;
+                value.ImageUrl = await _gcsservice.UploadFileAsync(updateProductDto.ImageFile, storageName);
+                value.StorageName = storageName;
+            }
             await _productCollection.FindOneAndReplaceAsync(x => x.ProductId == updateProductDto.ProductId, value);
         }
     }
