@@ -7,6 +7,8 @@
   <li>NoSql MongoDb</li>
   <li>Entity Framework Code First</li>
   <li>Google Cloud Storage</li>
+  <li>EPPLUS</li>
+  <li>iTextSharp</li>
   <li>Html</li>
   <li>Css</li>
   <li>JavaScript</li>
