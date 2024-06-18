@@ -9,7 +9,9 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="13.0.1" />
+    <PackageReference Include="EPPlus" Version="7.1.3" />
     <PackageReference Include="Google.Cloud.Storage.V1" Version="4.10.0" />
+    <PackageReference Include="iTextSharp" Version="5.5.13.4" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.16" />
     <PackageReference Include="MongoDB.Bson" Version="2.26.0" />
     <PackageReference Include="MongoDB.Driver" Version="2.26.0" />
@@ -20,6 +22,10 @@
     <None Include="wwwroot\pluto-1.0.0\images\.DS_Store" />
     <None Include="wwwroot\pluto-1.0.0\images\layout_img\.DS_Store" />
     <None Include="wwwroot\pluto-1.0.0\modules\.DS_Store" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\Reports\" />
   </ItemGroup>
 
 </Project>
