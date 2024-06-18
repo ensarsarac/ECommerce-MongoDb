@@ -20,6 +20,7 @@
 ![Ekran görüntüsü 2024-06-17 191922](https://github.com/ensarsarac/ECommerce-MongoDb/assets/76907308/f8b1616c-2109-444a-af6b-2e9577041b87)
 ![Ekran görüntüsü 2024-06-17 193413](https://github.com/ensarsarac/ECommerce-MongoDb/assets/76907308/db1b7ad7-dd8f-41ce-a564-97d87ea342ba)
 ![Ekran görüntüsü 2024-06-17 191847](https://github.com/ensarsarac/ECommerce-MongoDb/assets/76907308/be282c31-75a1-450e-b98a-e945c0b85122)
+![Ekran görüntüsü 2024-06-18 151255](https://github.com/ensarsarac/ECommerce-MongoDb/assets/76907308/6c9ee1d7-462f-4e97-9a62-6e55665d492f)
 ![Ekran görüntüsü 2024-06-18 132345](https://github.com/ensarsarac/ECommerce-MongoDb/assets/76907308/7239a754-226b-4097-9d7b-935953d009fd)
 
 
